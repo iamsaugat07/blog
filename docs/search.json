@@ -18,7 +18,7 @@
     "href": "posts/my first ml model/end-to-end-heart-disease-classification.html",
     "title": "Predicting heart disease using machine learning",
     "section": "",
-    "text": "This notebook looks into using various Python-based machine learning and data science libraries in an attempt to build a machine learning model capable of predicting whether someone has heart disease based on their medical attributes\nwe’re going to take following approach: 1. Problem definition 2. Data 3. Evaluation 4. Features 5. Modeling 6. Experimentation"
+    "text": "---\ntitle: \"Heart disease prediction\"\nauthor: \"Saugat\"\ndate: \"6/3/2021\"\nformat: \n  html:\n    code-fold: true\njupyter: python3\n---\nThis notebook looks into using various Python-based machine learning and data science libraries in an attempt to build a machine learning model capable of predicting whether someone has heart disease based on their medical attributes\nwe’re going to take following approach: 1. Problem definition 2. Data 3. Evaluation 4. Features 5. Modeling 6. Experimentation"
   },
   {
     "objectID": "posts/my first ml model/end-to-end-heart-disease-classification.html#problem-definition",
@@ -53,7 +53,7 @@
     "href": "posts/my first ml model/end-to-end-heart-disease-classification.html#preparing-the-tools",
     "title": "Predicting heart disease using machine learning",
     "section": "Preparing the tools",
-    "text": "Preparing the tools\nwe’re going to use pandas, matplotlib and Numpy for data analysis and manipulation\n\n---\ntitle: \"Heart disease prediction\"\nauthor: \"Saugat\"\ndate: \"6/3/2021\"\nformat: \n  html:\n    code-fold: true\njupyter: python3\n---\n\n\n# import all the tools\n\n# Regular EDA(exploratory data analysis) and plotting library\nimport numpy as np\nimport pandas as pd \nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\n#we want our plots to appear inside the notebook\n%matplotlib inline \n\n# models from scikit-learn\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.ensemble import RandomForestClassifier\n\n# model evaluations \nfrom sklearn.model_selection import train_test_split, cross_val_score\nfrom sklearn.model_selection import RandomizedSearchCV, GridSearchCV\nfrom sklearn.metrics import confusion_matrix, classification_report\nfrom sklearn.metrics import precision_score, recall_score, f1_score\nfrom sklearn.metrics import RocCurveDisplay"
+    "text": "Preparing the tools\nwe’re going to use pandas, matplotlib and Numpy for data analysis and manipulation\n\n# import all the tools\n\n# Regular EDA(exploratory data analysis) and plotting library\nimport numpy as np\nimport pandas as pd \nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\n#we want our plots to appear inside the notebook\n%matplotlib inline \n\n# models from scikit-learn\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.ensemble import RandomForestClassifier\n\n# model evaluations \nfrom sklearn.model_selection import train_test_split, cross_val_score\nfrom sklearn.model_selection import RandomizedSearchCV, GridSearchCV\nfrom sklearn.metrics import confusion_matrix, classification_report\nfrom sklearn.metrics import precision_score, recall_score, f1_score\nfrom sklearn.metrics import RocCurveDisplay"
   },
   {
     "objectID": "posts/my first ml model/end-to-end-heart-disease-classification.html#load-data",
