@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "$hello_world!",
+    "section": "",
+    "text": "Welcome To My Blog\n\n\n\n\n\n\n\nupdate\n\n\n\n\n\n\n\n\n\n\n\nJun 3, 2023\n\n\nSaugat\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\nLarge Language Model have generated a shift in our daily life. We can already see impact of LLMs based appilcation like ChatGPT in our daily lifes.\nThe fundamental working principle behind such LLMs has been deep learning. I am grateful enough to live in this period where we can leverage such powerful models to do anything that involves natural language.\nAnd this is exciting as I begin to learn more about language models, machine learning, AI and whatever the heck that comes out in the future. I feel like this is the right time to get into machine learning and AI for anyone literally.\n source: 5 things you should know about AI.(Cambridge consultant, 2017)\nHere I will share my journey of becoming an AI developer, bringing AI and Machine learning based product to production in real world."
+  }
+]

@@ -1,0 +1,23 @@
+---
+title: "Welcome To My Blog"
+author: "Saugat"
+date: "2023-06-03"
+categories: [update]
+---
+
+This is the first post in a Quarto blog. Welcome!
+
+Large Language Model have generated a shift in our daily life. We can already see impact of LLMs based appilcation like ChatGPT in our daily lifes. 
+
+The fundamental working principle behind such LLMs has been deep learning. I am grateful enough to live in this period where we can leverage such powerful models to do anything that involves natural language.
+
+And this is exciting as I begin to learn more about language models, machine learning, AI and whatever the heck that comes out in the future. I feel like this is the right time to get into machine learning and AI for anyone literally. 
+
+![](ai.jpg)
+source: 5 things you should know about AI.(Cambridge consultant, 2017)
+
+Here I will share my journey of becoming an AI developer, bringing AI and Machine learning based product to production in real world.
+
+![](thumbnail.jpg)
+
+

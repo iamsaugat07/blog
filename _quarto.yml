@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Saugat's blog"
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/iamsaugat07
+      - icon: twitter
+        href: https://twitter.com/iamsaugat07
+      - icon: linkedin
+        href: https://www.linkedin.com/in/saugat-pandey-b437b3148/
+format:
+  html:
+    theme: sketchy
+    css: styles.css
+
+
+
