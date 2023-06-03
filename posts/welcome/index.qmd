@@ -7,7 +7,7 @@ categories: [update]
 
 This is the first post in a Quarto blog. Welcome!
 
-Large Language Model have generated a shift in our daily life. We can already see impact of LLMs based appilcation like ChatGPT in our daily lifes. 
+Large Language Model have generated a shift in our daily life. We can already see the impact of LLMs based appilcation like ChatGPT in our daily lives. 
 
 The fundamental working principle behind such LLMs has been deep learning. I am grateful enough to live in this period where we can leverage such powerful models to do anything that involves natural language.
 
