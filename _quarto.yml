@@ -5,7 +5,7 @@ project:
 website:
   comments: 
       utterances: 
-        repo: quarto-dev/quarto-cli
+        repo: quarto-dev/quarto-docs
         theme: body-light
       
   title: "Saugat's blog"
