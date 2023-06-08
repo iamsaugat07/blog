@@ -8,7 +8,6 @@ comments:
       repo: quarto-dev/quarto-web
       theme: body-light
       issue-term: title
-
 ---
 
 (env) saugat: brain/cerebral cortex/machine learning-AI
