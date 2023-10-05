@@ -3,11 +3,9 @@ project:
   output-dir: docs
 
 website:
-  comments: 
-      utterances: 
-        repo: quarto-dev/quarto-docs
-        theme: body-light
-      
+  comments:
+    hypothesis: true
+
   title: "Saugat's blog"
   navbar:
     right:

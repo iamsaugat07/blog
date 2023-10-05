@@ -4,10 +4,7 @@ author: "Saugat"
 date: "2023-06-08"
 categories: [Machine learning & AI]
 comments: 
-    utterances: 
-      repo: quarto-dev/quarto-web
-      theme: body-light
-      issue-term: title
+    hypothesis: true
 ---
 
 (env) saugat: brain/cerebral cortex/machine learning-AI

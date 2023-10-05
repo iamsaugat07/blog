@@ -1,0 +1,631 @@
+---
+title: "Heart disease prediction"
+author: "Saugat"
+date: "6/3/2021"
+categories: [Machine learning & AI]
+format: 
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+
+This notebook looks into using various Python-based machine learning and data science libraries in an attempt to build a machine learning model capable of predicting whether someone has heart disease based on their medical attributes 
+
+we're going to take following approach:
+1. Problem definition
+2. Data 
+3. Evaluation 
+4. Features
+5. Modeling 
+6. Experimentation 
+
+## 1. Problem definition
+
+In a statement,
+> Given clinical parameters about a patient, can we predict a patient has heart disease.
+
+## 2. Data
+
+The original data came from the Cleavland data from UCI machine learning repository - https://archive.ics.uci.edu/ml/datasets/heart+disease
+
+On kaggle - https://www.kaggle.com/datasets/redwankarimsony/heart-disease-data
+
+## 3. Evaluation
+
+> If we can reach 95% accuracy at predicting whether or not a patient has heart disease during the proof of concept, we'll pursue the project.
+
+## 4. Features 
+ 
+This is where you'll get different information about each of the features in your data
+
+**create data dictionary**
+
+1. age - age in years
+2. sex - (1 = male; 0 = female)
+3. cp - chest pain type
+    * 0: Typical angina: chest pain related decrease blood supply to the heart
+    * 1: Atypical angina: chest pain not related to heart
+    * 2: Non-anginal pain: typically esophageal spasms (non heart related)
+    *3: Asymptomatic: chest pain not showing signs of disease
+4. trestbps - resting blood pressure (in mm Hg on admission to the hospital)
+    * anything above 130-140 is typically cause for concern
+5. chol - serum cholestoral in mg/dl
+    * serum = LDL + HDL + .2 * triglycerides
+    * above 200 is cause for concern
+6. fbs - (fasting blood sugar > 120 mg/dl) (1 = true; 0 = false)
+    * '>126' mg/dL signals diabetes
+7. restecg - resting electrocardiographic results
+    * 0: Nothing to note
+    * 1: ST-T Wave abnormality
+        * can range from mild symptoms to severe problems
+        * signals non-normal heart beat
+    * 2: Possible or definite left ventricular hypertrophy
+        * Enlarged heart's main pumping chamber
+8. thalach - maximum heart rate achieved
+9. exang - exercise induced angina (1 = yes; 0 = no)
+10. oldpeak - ST depression induced by exercise relative to rest
+    * looks at stress of heart during excercise
+    * unhealthy heart will stress more
+11. slope - the slope of the peak exercise ST segment
+    * 0: Upsloping: better heart rate with excercise (uncommon)
+    * 1: Flatsloping: minimal change (typical healthy heart)
+    * 2: Downslopins: signs of unhealthy heart
+12. ca - number of major vessels (0-3) colored by flourosopy
+    * colored vessel means the doctor can see the blood passing through
+13. thal - thalium stress result
+    * 1,3: normal
+    * 6: fixed defect: used to be defect but ok now
+    * 7: reversable defect: no proper blood movement when excercising
+14. target - have disease or not (1=yes, 0=no) (= the predicted attribute)
+
+
+## Preparing the tools 
+
+we're going to use pandas, matplotlib and Numpy for data analysis and manipulation
+
+```{python}
+# import all the tools
+
+# Regular EDA(exploratory data analysis) and plotting library
+import numpy as np
+import pandas as pd 
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+#we want our plots to appear inside the notebook
+%matplotlib inline 
+
+# models from scikit-learn
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+# model evaluations 
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import RandomizedSearchCV, GridSearchCV
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import precision_score, recall_score, f1_score
+from sklearn.metrics import RocCurveDisplay
+```
+
+## Load data
+
+```{python}
+df = pd.read_csv("data/heart-disease (1).csv")
+df.shape
+```
+
+## Data Exploration ( Exploratory data analysis or EDA)
+
+The goal here is to find out more about the data and become a subject matter export on the dataset you're working with
+
+1. What question(s) are you trying to solve (or prove wrong)?
+2. What kind of data do you have and how do you treat different types?
+3. What’s missing from the data and how do you deal with it?
+4. Where are the outliers and why should you care about them?
+5. How can you add, change or remove features to get more out of your data?
+
+```{python}
+df.head()
+```
+
+```{python}
+#lets find out how many of each class exists
+df.target.value_counts()
+```
+
+```{python}
+df.target.value_counts().plot(kind = "bar", color = ["salmon","lightblue"])
+```
+
+```{python}
+df.info()
+```
+
+```{python}
+df.isna().sum()
+```
+
+```{python}
+df.describe()
+```
+
+### Heart disease frequency according to sex
+
+```{python}
+df.sex.value_counts()
+df.target.value_counts()
+```
+
+```{python}
+ pd.crosstab(df.target, df.sex)
+```
+
+```{python}
+pd.crosstab(df.target,df.sex).plot(kind = "bar",
+                                  color =["salmon","lightblue"],
+                                  figsize =(10,6))
+plt.title("Heart Disease Frequency for sex")
+plt.xlabel("0 = No disease, 1 = disease")
+plt.ylabel("Amount")
+plt.legend(["Female","Male"]);
+plt.xticks(rotation=0)
+```
+
+```{python}
+pd.crosstab(df.target, df.age)
+```
+
+```{python}
+pd.crosstab(df.target,df.exang)
+```
+
+### Age vs max heart rate for heart disease 
+
+```{python}
+# create another figure
+plt.figure(figsize=(10,6))
+
+#scatter with positive examples
+plt.scatter(df.age[df.target==1],
+           df.thalach[df.target==1],
+           c="salmon")
+
+#scatter with neg example
+plt.scatter(df.age[df.target==0],
+           df.thalach[df.target==0],
+           c="lightblue");
+
+plt.title("Heart disease in function of age and max heart rate")
+plt.xlabel("Age")
+plt.ylabel("Max heart rate")
+plt.legend(["Disease","No disease"]);
+```
+
+```{python}
+#check the distribution of the age column with a histogram
+df.age.plot.hist();
+```
+
+### Heart disease frequency per chest pain type
+3. cp - chest pain type
+    * 0: Typical angina: chest pain related decrease blood supply to the heart
+    * 1: Atypical angina: chest pain not related to heart
+    * 2: Non-anginal pain: typically esophageal spasms (non heart related)
+
+```{python}
+pd.crosstab(df.cp,df.target)
+```
+
+```{python}
+#make the crosstab more visual
+pd.crosstab(df.cp,df.target).plot(kind="bar",
+                                 figsize =(10,6),
+                                 color = ["salmon","lightblue"])
+plt.title("Heart disease frequency per chest pain type")
+plt.xlabel("Chest pain type")
+plt.ylabel("amount")
+plt.legend(["No disease","Disease"])
+plt.xticks(rotation=0);
+```
+
+```{python}
+# make a correlation matrix
+df.corr()
+```
+
+```{python}
+# lets make our correlation matrix visual
+corr_matrix = df.corr()
+fig, ax = plt.subplots(figsize=(15,10))
+ax = sns.heatmap(corr_matrix,
+                 annot = True,
+                 linewidths = 0.5,
+                 fmt = ".2f",
+                 cmap = "YlGnBu");
+```
+
+## 5. Modelling
+
+```{python}
+# split into X & y
+X = df.drop("target", axis =1)
+y = df["target"]
+```
+
+```{python}
+X
+```
+
+```{python}
+y
+```
+
+```{python}
+# split data into train and test set
+np.random.seed(42)
+
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size =0.2)
+```
+
+```{python}
+X_train
+```
+
+Now we've got our data split into train and test sets, its time to use machine learning
+
+We're going to try 3 different machine learning model 
+1. Logistic regression
+2. K-Nearest Neighbours classifier
+3. Random forest classifier
+
+```{python}
+# put models in a dictionary
+models = {"logistics regression": LogisticRegression(),
+         "KNN": KNeighborsClassifier(),
+         "Random Forest": RandomForestClassifier()}
+
+# creare a function to fit and score models 
+def fit_and_score(models, X_train, X_test, y_train, y_test):
+    """
+    Fits and evaluates given machine learning models.
+    models : a dict of different scikit-learn machine learning models
+    X_train : training data (no labels)
+    X_test : testing data (no labels)
+    y_train : training labels
+    y_test : test label
+    """
+    #set random seed
+    np.random.seed(42)
+    
+    #set empty dict to store model scores
+    model_scores = {}
+    
+    # looping through model dict
+    for name, model in models.items():
+        # fit the model
+        model.fit(X_train, y_train)
+        #evaluate the model
+        model_scores [name] = model.score(X_test, y_test)
+    return model_scores
+```
+
+```{python}
+model_scores = fit_and_score(models, X_train,X_test,y_train,y_test)
+model_scores
+```
+
+### Model comparison
+
+```{python}
+
+model_compare = pd.DataFrame(model_scores, index = ["accuracy"])
+model_compare.T.plot.bar();
+```
+
+Now we've got a baseline model and we know model's first predicction aren't always final
+
+lets look at the following:
+* Hyperparameter tuning
+* Feature importance 
+* Confusion matrix
+* Cross-validation
+* Precision
+* Recall
+* F1 score 
+* Classification report
+* ROC vurve
+* Area under the curve (AUC)
+
+### Hyperparameter tuning
+
+```{python}
+#let's tune KNN
+
+train_scores = []
+test_scores = []
+
+# create a list of different values for n-neighbours 
+neighbors = range(1,21)
+
+# setup KNN instance
+knn = KNeighborsClassifier()
+
+# loop for different value of n-neighbours
+for i in neighbors:
+    knn.set_params(n_neighbors = i) # set neighbors value
+    
+    #fit the algorithm
+    knn.fit(X_train, y_train)
+    
+    #update the training score 
+    train_scores.append(knn.score(X_train,y_train))
+    
+    #update the test score 
+    test_scores.append(knn.score(X_test, y_test))
+```
+
+```{python}
+train_scores
+```
+
+```{python}
+plt.plot(neighbors, train_scores, label = "train score")
+plt.plot(neighbors, test_scores, label = "test score")
+plt.xticks(np.arange(1,21,1))
+plt.xlabel("number of neighbors")
+plt.ylabel("model score")
+plt.legend()
+
+print(f"The best accuracy of the KNN model is {max(test_scores)*100:.2f} %")
+```
+
+## hyperparameter tuning with randomizedsearchCV
+
+we're going to tune:
+* LogisticRegression()
+* RandomForestClassifier()
+
+using randomizedsearchCV
+
+```{python}
+# create hyperparamter grid for logisticRegression
+log_reg_grid = {"C" : np.logspace(-4,4,20),
+               "solver" : ["liblinear"]}
+
+#create hyperparameter grid for RandomSearchCV
+rf_grid = {"n_estimators" : np.arange(10,1000,50),
+          "max_depth" : [None, 3,5,10],
+          "min_samples_split" : np.arange(2,20,2),
+          "min_samples_leaf" : np.arange(1,20,2)}
+```
+
+lets use `RandomizedSearchCV`
+
+```{python}
+# tune logisticRegression 
+  
+np.random.seed(42)
+
+# set up random hyperparameter for logisticRegression
+rs_log_reg = RandomizedSearchCV(LogisticRegression(),
+                               param_distributions=log_reg_grid,
+                               cv =5,
+                               n_iter = 20,
+                               verbose = True)
+
+#fit the model
+rs_log_reg.fit(X_train, y_train)
+```
+
+```{python}
+rs_log_reg.best_params_
+```
+
+```{python}
+rs_log_reg.score(X_test, y_test)
+```
+
+```{python}
+# tune RandomForestClassifier
+  
+np.random.seed(42)
+
+# set up random hyperparameter for randomforestclassifier
+rs_rf= RandomizedSearchCV(RandomForestClassifier(),
+                               param_distributions=rf_grid,
+                               cv =5,
+                               n_iter = 20,
+                               verbose = True)
+
+#fit the model
+rs_rf.fit(X_train, y_train)
+```
+
+```{python}
+rs_rf.best_params_
+```
+
+```{python}
+rs_rf.score(X_test,y_test)
+```
+
+## Hyperparameter turning using GridSearchCV
+
+```{python}
+# different hyperparameter for our logisticRegression Model
+log_reg_grid = {"C": np.logspace(-4,4,30),
+                "solver":["liblinear"]
+               }
+
+np.random.seed(42)
+
+#setup grid hyperparameter search for logisticRegression
+gs_log_reg = GridSearchCV(LogisticRegression(),
+                         param_grid=log_reg_grid,
+                         cv =5,
+                         verbose = True)
+
+#fit our model
+gs_log_reg.fit(X_train,y_train);
+```
+
+```{python}
+# check best hyperparameter
+gs_log_reg.best_params_
+```
+
+```{python}
+gs_log_reg.score(X_test,y_test)
+```
+
+## Evaluating our tuned machine learning classfier, beyond accuracy
+
+* ROC curve and AUC score
+* Confusion matrix
+* Classification report
+* Precision 
+* Recall
+* F1-score
+
+To make comparisons and evaluate our trained model, first we need to make predictions
+
+```{python}
+# make prediction with tuned model
+y_preds = gs_log_reg.predict(X_test)
+```
+
+```{python}
+y_preds
+```
+
+```{python}
+# plot ROC curve and calculate AUC score
+RocCurveDisplay.from_estimator(gs_log_reg,X_test,y_test);
+```
+
+```{python}
+# Confusion matrix 
+print(confusion_matrix(y_test,y_preds))
+```
+
+```{python}
+sns.set(font_scale= 1.5)
+
+def plot_conf_mat(y_test,y_preds):
+    """
+    PLots a nice looking confusion matrix using Seaborn's heatmap()
+    """
+    fig, ax = plt.subplots(figsize = (3,3))
+    ax = sns.heatmap(confusion_matrix(y_test, y_preds),
+                    annot = True,
+                    cbar = False)
+    plt.xlabel("True label")
+    plt.ylabel("Predicted label")
+    
+plot_conf_mat(y_test,y_preds)
+```
+
+lets get classification report as well as cross-validated precision, recall and f1 score.
+
+```{python}
+print(classification_report(y_test,y_preds))
+```
+
+### Calculate evaluation metrics using cross validation
+
+
+```{python}
+# check best hyperparameters 
+gs_log_reg.best_params_
+```
+
+```{python}
+# create a new classifier with best params 
+clf = LogisticRegression(C=0.20433597178569418,
+                        solver = "liblinear")
+
+```
+
+```{python}
+# cross validated accuracy
+cv_acc = cross_val_score(clf, X, y, cv = 5, scoring= "accuracy")
+cv_acc
+```
+
+```{python}
+cv_acc = np.mean(cv_acc)
+cv_acc
+```
+
+```{python}
+# cross validated precision
+cv_precision =cross_val_score(clf, X, y, cv = 5, scoring= "precision")
+
+cv_precision = np.mean(cv_precision)
+cv_precision
+```
+
+```{python}
+# cross validated recall 
+cv_recall = cross_val_score(clf, X, y, cv = 5, scoring= "recall")
+
+cv_recall = np.mean(cv_recall)
+cv_recall
+```
+
+```{python}
+# cross validated f1-score
+cv_f1 = cross_val_score(clf, X, y, cv = 5, scoring= "precision")
+
+cv_f1 = np.mean(cv_f1)
+cv_f1
+```
+
+```{python}
+# visualize cross validated metrics 
+cv_metrics = pd.DataFrame({"Accuracy": cv_acc,
+                          "Precision" : cv_precision,
+                          "recall" : cv_recall,
+                          "f1-score" : cv_f1},
+                          index = [0])
+cv_metrics.T.plot.bar(title = "Cross validated evaluation metrics",legend = 0);
+```
+
+### feature importance 
+Which feature contributed the most to the outcomes of the model and how did they contribute 
+
+```{python}
+# fit an instance of logisticregressionabs
+clf.fit(X_train,y_train);
+```
+
+```{python}
+# check coef_
+clf.coef_
+```
+
+```{python}
+# match coef's of features to columns 
+feature_dict = dict(zip(df.columns, list(clf.coef_[0])))
+feature_dict
+```
+
+```{python}
+# visualize feature importance
+feature_df = pd.DataFrame(feature_dict,index=[0])
+feature_df.T.plot.bar(title = "Feature Importance", legend = 0
+                     );
+```
+
+## 6. Experimentation 
+
+If the evaluation metrics is not met:
+
+* Could you collect more data?
+* Could you try better model? like catboost or XGBoost?
+* Could we improve the current model ? (beyond what we have done so far)
+* if you meet your evaluation metrics, how would you share it with others?
+
+
