@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,13 +62,48 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -70,10 +111,10 @@ ul.task-list li input[type="checkbox"] {
 <body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Saugat’s blog</span>
     </a>
@@ -85,28 +126,28 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/iamsaugat07" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/iamsaugat07"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/iamsaugat07" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/iamsaugat07"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/saugat-pandey-b437b3148/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/saugat-pandey-b437b3148/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -152,6 +193,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+
 <section id="week-1" class="level2">
 <h2 class="anchored" data-anchor-id="week-1">Week 1</h2>
 <details>
@@ -170,28 +212,27 @@ Overview of machine learning
 Supervised vs Unsupervised machine learning
 </summary>
 <ul>
-<li>Supervised learning
+<li><details>
+<summary>
+Supervised learning
+</summary>
 <ul>
-<li>learns from being given “right answer” <img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled.png" class="img-fluid" alt="use-cases"></li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 1.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-<li>Unsupervised learning
+<li>Learns from being given the “right answer” <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled.png" class="img-fluid" alt="Application of supervised learning"> Application of supervised learning <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 1.png" class="img-fluid" alt="What’s supervised learning?"> What’s supervised learning?</li>
+</ul>
+</details></li>
+<li><details>
+<summary>
+Unsupervised learning
+</summary>
 <ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-<li>clustering : group similar data points together</li>
-<li>Anomaly detection : find unusual datapoint</li>
+<li><img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 2.png" class="img-fluid" alt="Unsupervised learning example"> Unsupervised learning example
+<ul>
+<li>Clustering: Group similar data points together</li>
+<li>Anomaly detection: Find unusual datapoint</li>
 <li>Dimensionality reduction: Compress data using fewer data</li>
 </ul></li>
+</ul>
+</details></li>
 </ul>
 </details>
 <details>
@@ -199,145 +240,54 @@ Supervised vs Unsupervised machine learning
 Linear regression model
 </summary>
 <ul>
-<li>What is linear regression model?
+<li><strong>What is linear regression model?</strong>
 <ul>
-<li>fit a line or model to the training data such that it gives minimum error (cost function). model parameters are adjusted to get the desired model.</li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 3.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
+<li>Fit a line or model to the training data such that it gives minimum error (cost function). Model parameters are adjusted to get the desired model. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 3.png" class="img-fluid" alt="Goal of linear regression"> Goal of linear regression</li>
 </ul></li>
 <li>Example: House sizes and prices</li>
-<li>What is cost function?
+<li><strong>What is cost function?</strong>
 <ul>
-<li>it helps us visualize how well our model is predicting by comparing the value predicted by the model to the actual target data in the training set.</li>
-<li>cost function may vary according to the model</li>
-<li>for example: Generally for linear regression model, mean squared error is used as cost function</li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 4.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
+<li>It helps us visualize how well our model is predicting by comparing the value predicted by the model to the actual target data in the training set. The cost function may vary according to the model. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 4.png" class="img-fluid" alt="Linear regression model"> Linear regression model</li>
+<li>For example: Generally for linear regression model, <strong>mean squared error</strong> is used as cost function <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 5.png" class="img-fluid" alt="Squared Error Cost function"> Squared Error Cost function <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 6.png" class="img-fluid" alt="Cost function visualization"> Cost function visualization</li>
 </ul></li>
 </ul>
 </details>
 <details>
 <summary>
-Train the model with gradient descent May 30, 2023
+Train the model with gradient descent
 </summary>
 <ul>
-<li>What is gradient descent?
+<li><p><strong>What is gradient descent?</strong></p>
 <ul>
-<li>going down hill to local minima</li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 5.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 6.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 7.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
+<li>Going down hill to local minima <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 7.png" class="img-fluid" alt="Gradient descent intuition"> Gradient descent intuition</li>
 </ul></li>
-<li>What is learning rate?
+<li><p><strong>What’s the initial guess?</strong></p>
 <ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 8.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
+<li>In linear regression mostly w and b are set to zero initially and reduce the cost function over multiple iterations. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 8.png" class="img-fluid" alt="Gradient descent implementation"> Gradient descent implementation <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 9.png" class="img-fluid" alt="The derivative term in gradient descent formula"> The derivative term in gradient descent formula</li>
 </ul></li>
-<li>What if the parameter already reach local minima? no change
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 9.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 10.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-<li>Example of gradient descent for linear regression
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 11.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-<li>lab : implement gradient descent algorithm</li>
+<li><p><strong>What is learning rate?</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 10.png" class="img-fluid" alt="Learning rate"> Learning rate</p></li>
+<li><p><strong>What if the parameter already reaches local minima? No change</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 11.png" class="img-fluid" alt="Local minima"> Local minima <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 12.png" class="img-fluid" alt="Example of gradient descent for linear regression"> Example of gradient descent for linear regression <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 13.png" class="img-fluid" alt="Batch gradient descent"> Batch gradient descent</p></li>
+<li><p>Lab: Implement gradient descent algorithm</p></li>
 </ul>
 </details>
 </section>
-<section id="week-2-june-1-2023" class="level2">
-<h2 class="anchored" data-anchor-id="week-2-june-1-2023">Week 2 June 1, 2023</h2>
+<section id="week-2" class="level2">
+<h2 class="anchored" data-anchor-id="week-2">Week 2</h2>
 <details>
 <summary>
 Multiple linear regression
 </summary>
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 12.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
+<p><img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 15.png" class="img-fluid figure-img"></p>
+<figcaption>Multiple linear regression</figcaption>
 </figure>
-</div></li>
-<li>vectorization - why is vectorization fast?
+</div>
+<p><strong>Vectorization - Why is vectorization fast?</strong> - Makes code shorter &amp; faster due to parallel computing capabilities using numpy and GPUs <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 16.png" class="img-fluid" alt="Vectorization"></p>
+<p><strong>Behind the scenes</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 17.png" class="img-fluid" alt="Behind the scenes"></p>
 <ul>
-<li>makes code shorter &amp; faster due to parallel computing capabilities using numpy and gpus</li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 13.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-<li>Behind the scenes
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 14.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-<li>Alternative to gradient descent
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 15.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-<li>Gradient descent for multiple regression
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 16.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
+<li><p>Alternative to gradient descent <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 18.png" class="img-fluid" alt="Alternative to gradient descent"></p></li>
+<li><p>Gradient descent for multiple regression <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 19.png" class="img-fluid" alt="Gradient descent for multiple regression"></p></li>
 </ul>
 </details>
 <details>
@@ -345,69 +295,33 @@ Multiple linear regression
 Gradient descent in practice
 </summary>
 <ul>
-<li>feature scaling
+<li><p>Feature scaling</p>
 <ul>
-<li>large features → small parameter values</li>
-<li>small features → large parameter values</li>
-<li><div class="quarto-figure quarto-figure-center">
+<li>Large features → small parameter values</li>
+<li>Small features → large parameter values</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 17.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
+<p><img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 20.png" class="img-fluid figure-img"></p>
+<figcaption>Feature scaling</figcaption>
 </figure>
-</div></li>
-<li><strong>scaling the feature to lie in similar range results in faster gradient descent</strong></li>
-<li><div class="quarto-figure quarto-figure-center">
+</div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 18.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
+<p><img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 21.png" class="img-fluid figure-img"></p>
+<figcaption>Impact of feature size on parameter size</figcaption>
 </figure>
-</div></li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 19.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-<li>methods for scaling:
+</div>
+<p><strong>Scaling the feature to lie in a similar range results in a faster gradient descent</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 22.png" class="img-fluid" alt="Feature size and gradient descent"></p>
+<p><img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 23.png" class="img-fluid" alt="Acceptable value range for feature scaling"> Methods for scaling:</p>
 <ul>
-<li>normalization : divide by max value of parameter</li>
-<li>mean normalization</li>
-<li>z-normalization</li>
+<li>Normalization: divide by the max value of the parameter</li>
+<li>Mean normalization <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 24.png" class="img-fluid" alt="Mean normalization"></li>
+<li>Z-normalization <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 25.png" class="img-fluid" alt="Z-normalization"></li>
 </ul></li>
-</ul></li>
-<li>Checking gradient descent for convergence
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 20.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 21.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-<li>Feature engineering
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 22.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-<li>Polynomial regression
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 23.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
+<li><p>Checking gradient descent for convergence <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 26.png" class="img-fluid" alt="Gradient descent for convergence"> <strong>How to choose the right learning rate?</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 27.png" class="img-fluid" alt="Learning rate"></p></li>
+<li><p>Feature engineering <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 28.png" class="img-fluid" alt="Feature engineering"></p></li>
+<li><p>Polynomial regression <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 29.png" class="img-fluid" alt="Polynomial regression"></p></li>
 </ul>
 </details>
 </section>
@@ -415,116 +329,63 @@ Gradient descent in practice
 <h2 class="anchored" data-anchor-id="week-3">Week 3</h2>
 <details>
 <summary>
-classification with logistic regression
+Classification with Logistic Regression
 </summary>
 <ul>
-<li>why not linear regression for classification problem?
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 24.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-<li>logistic regression from sigmoid function
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 25.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 26.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-<li>Decision boundary
-<ul>
-<li>visualize logistic regression</li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 27.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-<li>decision boundary - straight line</li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 28.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-<li>decision boundary - nonlinear</li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 29.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
+<li>Logistic regression is applied for classification problems.</li>
 </ul>
+<p><strong>Why not linear regression for classification problems?</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 30.png" class="img-fluid" alt="Classification problems using linear regression don’t work"></p>
+<p><strong>Logistic regression from sigmoid function</strong> <span class="math inline">\(f_w, b (x)\)</span> is a sigmoid function instead of a linear function. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 31.png" class="img-fluid" alt="Logistic regression algorithm"></p>
+<p><strong>The output of logistic regression is expressed in terms of probability</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 32.png" class="img-fluid" alt="Logistic regression output"></p>
+<p><strong>Decision boundary</strong> Visualize logistic regression - pick a threshold value. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 33.png" class="img-fluid" alt="How logistic regression gives output"></p>
+<p>Decision boundary - straight line. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 34.png" class="img-fluid" alt="Linear decision boundary"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 35.png" class="img-fluid figure-img"></p>
+<figcaption>Non-linear decision boundaries</figcaption>
+</figure>
+</div>
 </details>
 <details>
 <summary>
-cost function for logistic regression
+Cost Function for Logistic Regression
 </summary>
-<ul>
-<li>why mean squared error cost dont work for logistic regression?
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
+<p><strong>Why does the mean squared error cost don’t work for logistic regression?</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 36.png" class="img-fluid" alt="Squared error cost don’t work for classification"></p>
+<p><strong>Logistic loss function</strong> Loss function measures model output for one training example whereas the cost function sums up loss function for each training example.</p>
+<p><strong>For true label: y = 1</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 37.png" class="img-fluid" alt="Logistic loss function for true label"></p>
+<p><strong>For false label: y = 0</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 38.png" class="img-fluid" alt="Logistic loss function for false label"></p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 30.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
+<p><img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 39.png" class="img-fluid figure-img"></p>
+<figcaption>Logistic cost function</figcaption>
 </figure>
-</div></li>
-</ul></li>
-<li>logistic loss function
-<ul>
-<li>for true label</li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 31.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-<li>for false label</li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 32.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 33.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-<li>Simplified cost function
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Supervised Machine learning Regression and classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 34.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Untitled</figcaption>
-</figure>
-</div></li>
-</ul></li>
-</ul>
+</div>
+<p>Simplified cost function. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 40.png" class="img-fluid" alt="Simplified cost function"></p>
 </details>
 <details>
 <summary>
-Gradient descent for logistic regression
+Gradient Descent for Logistic Regression
 </summary>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 41.png" class="img-fluid figure-img"></p>
+<figcaption>Gradient descent for logistic regression</figcaption>
+</figure>
+</div>
+<p>Similarity between GD for linear regression &amp; logistic regression. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 42.png" class="img-fluid" alt="Similarity between LR &amp; LoRa"></p>
 </details>
 <details>
 <summary>
-The problem of overfitting
+The Problem of Overfitting
 </summary>
+<p><strong>Underfitting vs Generalization vs Overfitting in Regression</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 43.png" class="img-fluid" alt="Overfitting in regression"></p>
+<p><strong>Underfitting vs Generalization vs Overfitting in Classification</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 44.png" class="img-fluid" alt="Overfitting in classification"></p>
+<p><strong>How to address overfitting problem?</strong> 1. By collecting more data. 2. By relevant feature selection. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 45.png" class="img-fluid" alt="Feature selection"> 3. By regularization. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 46.png" class="img-fluid" alt="Regularization"></p>
+<p><strong>Cost function with regularization</strong> Intuition for regularization. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 47.png" class="img-fluid" alt="Intuition for regularization"></p>
+<p>Conventionally regularization is done for the w parameter only. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 48.png" class="img-fluid" alt="Cost function with regularization"></p>
+<p><strong>Choosing the right value for lambda</strong> - If lambda is very large ⇒ underfit. - If lambda is very small ⇒ overfit. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 49.png" class="img-fluid" alt="Choosing lambda"></p>
+<p><strong>Regularized linear regression</strong> <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 50.png" class="img-fluid" alt="Regularized linear regression"></p>
+<p><strong>Regularized logistic regression</strong> Similar to linear regression. <img src="Supervised Machine learning Regression and Classif 88010aee33fa44fdb3ab3ec14086fccf/Untitled 51.png" class="img-fluid" alt="Regularized logistic regression"></p>
 </details>
 
 
@@ -610,10 +471,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -623,8 +483,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -637,6 +506,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -680,6 +668,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -705,6 +694,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -765,6 +780,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
