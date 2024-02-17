@@ -3,8 +3,8 @@
     "listing": "/index.html",
     "items": [
       "/posts/mlcurriculum/index.html",
-      "/posts/welcome/index.html",
-      "/posts/my first ml model/end-to-end-heart-disease-classification.html"
+      "/posts/my first ml model/end-to-end-heart-disease-classification.html",
+      "/posts/welcome/index.html"
     ]
   }
 ]

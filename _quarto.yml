@@ -4,7 +4,8 @@ project:
 
 website:
   comments:
-    hypothesis: true
+    utterances:
+      repo: iamsaugat07/blog
 
   title: "Saugat's blog"
   navbar:
