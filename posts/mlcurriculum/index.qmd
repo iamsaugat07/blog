@@ -3,8 +3,7 @@ title: "My curriculum for learning machine learning in 2023"
 author: "Saugat"
 date: "2023-06-08"
 categories: [Machine learning & AI]
-comments: 
-    hypothesis: true
+
 ---
 
 (env) saugat: brain/cerebral cortex/machine learning-AI
